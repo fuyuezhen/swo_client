@@ -102,7 +102,7 @@
             console.log("msg=" + msg);
             // 数据格式化
             let data ;
-            if (clientId == "") {
+            if (clientId == 0) {
                 // 为广播
                 // websocket.send();
                 data = `{"method":"serverBroadcast","msg":"${msg}"}`;
