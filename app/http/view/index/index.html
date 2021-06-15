@@ -56,9 +56,10 @@
         // 接收信息
         websocket.onmessage = function (evt) {
             console.log("onMessage");
-            var data = eval('(' + evt.data + ')');
-            console.log(data);
-            document.getElementById("message").innerHTML += "<p>响应信息:" + data.msg + "</p>"
+            // var data = eval('(' + evt.data + ')');
+            // console.log(data);
+            // document.getElementById("message").innerHTML += "<p>响应信息:" + data.msg + "</p>"
+            document.getElementById("message").innerHTML += "<p>响应信息:" + evt + "</p>"
         };
 
         // 连接失败
