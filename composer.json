@@ -1,0 +1,21 @@
+{
+    "name": "fuyuezhen/client",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "fuyuezhen",
+            "email": "976066889@qq.com"
+        }
+    ],
+    "require": {
+        "php" : ">7.0",
+        "fuyuezhen/swostar": "^1.0",
+        "firebase/php-jwt": "^5.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "app\\":"app/"
+        }
+    }
+}
