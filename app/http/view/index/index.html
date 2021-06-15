@@ -56,7 +56,7 @@
         // 接收信息
         websocket.onmessage = function (evt) {
             console.log("onMessage");
-            var data = eval('(' + event.data + ')');
+            var data = eval('(' + evt.data + ')');
             console.log(data);
             document.getElementById("message").innerHTML += "<p>响应信息:" + data.msg + "</p>"
         };
