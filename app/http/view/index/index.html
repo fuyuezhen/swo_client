@@ -11,8 +11,9 @@
     <input id="msg" value="" />
     <input type="submit" value="发送" onclick="start()">
     <input type="submit" value="关闭" onclick="close()">
-    <label><input name="clientId" type="radio" value="0" checked />广播</label>
-    <label><input name="clientId" type="radio" value="1" />私聊</label>
+    <input id="clientId" value="0" /> 0为广播，私聊用户ID
+    <!-- <label><input name="clientId" type="radio" value="0" checked />广播</label>
+    <label><input name="clientId" type="radio" value="1" />私聊</label> -->
     <div id="message"></div>
 
     
@@ -92,11 +93,11 @@
             // 消息
             var msg = document.getElementById('msg').value;
             // 发送类型
-            // var clientId = document.getElementById('clientId').value;
-            var clientId = $("input[name='clientId']:checked").val();;
+            var clientId = document.getElementById('clientId').value;
+            // var clientId = $("input[name='clientId']:checked").val();
             // 情况数据
             document.getElementById('msg').value = '';
-            // document.getElementById('clientId').value = '';
+            document.getElementById('clientId').value = '0';
             // 连接状态
             console.log("send:" + sockState());
             console.log("msg=" + msg);
@@ -113,7 +114,7 @@
             console.log(data);
             // 开始发送
             websocket.send(data);
-            document.getElementById("message").innerHTML += "<p>request" + msg + "</p>"
+            document.getElementById("message").innerHTML += "<p>发送信息：" + msg + "</p>"
         };
 
         // 断开连接
