@@ -43,30 +43,30 @@
         // var websocket  = new WebSocket(wsServer);
 
         websocket.onopen = function (evt) {
-            console.log("open:" + sockState());
+            console.log("open：" + sockState());
             websocket.send(`{"method":"serverBroadcast","msg":"大家好我是${id}","type":"up"}`);
             document.getElementById("message").innerHTML = `<p>连接到服务器：${data.url}~</p>`;
         };
 
         websocket.onclose = function (evt) {
             document.getElementById("message").innerHTML = "<p>已断开连接!</p>";
-            console.log("close:" + sockState());
+            console.log("close：" + sockState());
             websocket.close();
         };
 
         // 接收信息
         websocket.onmessage = function (evt) {
             console.log("onMessage");
-            // var data = eval('(' + evt.data + ')');
+            var data = eval('(' + evt.data + ')');
             // console.log(data);
             // document.getElementById("message").innerHTML += "<p>响应信息:" + data.msg + "</p>"
-            document.getElementById("message").innerHTML += "<p>响应信息:" + evt.data + "</p>"
+            document.getElementById("message").innerHTML += "<p>响应信息：" + evt.data + "</p>"
         };
 
         // 连接失败
         websocket.onerror = function (evt, e) {
             document.getElementById("message").innerHTML = "<p>close</p>";
-            console.log('错误信息: ' + evt.data);
+            console.log('错误信息：' + evt.data);
         };
         
         // 连接状态
