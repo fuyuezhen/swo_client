@@ -101,7 +101,7 @@ class WebSocketServer extends HttpServer
         // 消息回复事件
         $this->app->make('event')->trigger('ws.message.front', [$this, $server, $frame]);
         $path = Connections::get($frame->fd)['path'];
-        $this->controller("message", (!($path=="/") ?: "index"), [$server, $frame]);
+        $this->controller("message", (!($path=="/") ?: "/index"), [$server, $frame]);
     }
     
     /**
@@ -148,8 +148,10 @@ class WebSocketServer extends HttpServer
      */
     public function sendAll($msg)
     {
+        // $connections 遍历所有websocket连接用户的fd，给所有用户推送
         foreach ($this->swooleServer->connections as $fd) {
-            if ($this->swooleServer->exists($fd)) {
+            // 需要先判断是否是正确的websocket连接，否则有可能会push失败
+            if ($this->swooleServer->isEstablished($fd)) {
                 $this->swooleServer->push($fd, $msg);
             }
         }
